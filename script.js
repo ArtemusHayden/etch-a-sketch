@@ -1,12 +1,21 @@
-const sketchCont = document.getElementsByClassName("sketch-cont");
+const defaultColor = '#1E1014'
+// const sketchCont = document.getElementsByClassName("sketch-cont");
 
-// let userInput = Number(prompt("How many squares?"))
-let userInput = 6
+// const userInput = document.querySelector('.slider');
+// const slideDisplay = document.querySelector('.slider-value');
+// userInput.onInput(() => {
+//     let value = userInput.value
+//     slideDisplay.textContent = value 
+//     createGrid(value)
+// });
 
-createGrid(userInput)
+let userInput = Number(prompt("How many squares?"))
+createGrid (userInput)
+
+
 function createGrid (userInput){
-    let gridAmount = (userInput * userInput)
     const sketchCont = document.querySelector(".sketch-cont");
+    let gridAmount = (userInput * userInput);
     for (i = 0; i < gridAmount; i++) {
         let grid = document.createElement('div');
         grid.style.height = (600 / userInput) + 'px';
@@ -20,14 +29,29 @@ function createGrid (userInput){
 
 
 const allGrids = document.querySelectorAll('.grid');
-const colorSelector = document.querySelector('.color-selector');
-
+let colorSelector = document.querySelector('.color-selector');
+const clear = document.querySelector('.clear');
+const eraser = document.querySelector('.eraser');
 let isMousedown = false;
+let eraserMode = false;
+
 allGrids.forEach(grid => {
+
+    colorSelector.addEventListener ('click', () =>{
+        eraserMode = false;
+    });
+
+    eraser.addEventListener('click', () =>{
+        eraserMode = true;
+    });
 
     grid.addEventListener("mousedown", () => {
         isMousedown = true;
-        grid.style.backgroundColor = colorSelector.value;
+        if (eraserMode === true) {
+            grid.style.backgroundColor = defaultColor;
+        } else{
+            grid.style.backgroundColor = colorSelector.value;
+        }
     });
 
     grid.addEventListener("mouseup", () => {
@@ -36,12 +60,19 @@ allGrids.forEach(grid => {
 
     grid.addEventListener("mousemove", () => {
         if (isMousedown) {
-            grid.style.backgroundColor = colorSelector.value;
+            if (eraserMode === true) {
+                grid.style.backgroundColor = defaultColor;
+            } else{
+                grid.style.backgroundColor = colorSelector.value;
+            }
         } else {
             return;
     }
     });
+
+    clear.addEventListener('click', () =>{
+        grid.style.backgroundColor = defaultColor;
+    });
 });
 
 // ^ allows grid to be colored when selected 
-
