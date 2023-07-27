@@ -1,21 +1,18 @@
 const defaultColor = '#1E1014'
-// const sketchCont = document.getElementsByClassName("sketch-cont");
+const sketchCont = document.getElementsByClassName("sketch-cont");
 
-// const userInput = document.querySelector('.slider');
-// const slideDisplay = document.querySelector('.slider-value');
-// userInput.onInput(() => {
-//     let value = userInput.value
-//     slideDisplay.textContent = value 
-//     createGrid(value)
-// });
-
-let userInput = Number(prompt("How many squares?"))
-createGrid (userInput)
-
+const userInput = document.querySelector('.slider');
+const slideDisplay = document.querySelector('.slider-value');
+userInput.oninput = (() => {
+    let value = userInput.value
+    slideDisplay.textContent = value 
+    createGrid(value)
+});
 
 function createGrid (userInput){
     const sketchCont = document.querySelector(".sketch-cont");
     let gridAmount = (userInput * userInput);
+    sketchCont.innerHTML = '';
     for (i = 0; i < gridAmount; i++) {
         let grid = document.createElement('div');
         grid.style.height = (600 / userInput) + 'px';
