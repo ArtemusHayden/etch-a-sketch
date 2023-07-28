@@ -2,21 +2,23 @@
     display: flex;
     margin: 0;
     flex-shrink: 1;
-    border: 1px white;
-    border-style: solid;
     box-sizing: border-box;
 }
+
 .left-settings {
     display: flex;
     flex-direction: column;
+    gap: 32px;
 }
 
 header{
     font-family: 'Roboto', sans-serif;
     font-size: 54px;
     justify-content: center;
+    align-items: center;
     display: flex;
     color: white;
+    flex-direction: column;
 }
 
 .center-page {
@@ -24,7 +26,6 @@ header{
     justify-content: center;
     gap: 100px;
 }
-
 
 .sketch-cont {
     display: flex;
@@ -48,4 +49,25 @@ body, html {
 
 .slider-value {
     color: white;
+}
+
+input[type="color"] {
+    width: 200px;
+    height: 100px;
+    padding: 0;
+    margin: 0;
+}
+
+h1, p {
+    margin: 0%;
+    padding-bottom: 16px;
+}
+
+.eraser, .clear {
+    border: 2px white;
+    border-style: solid;
+    background-color: #1E1014;
+    color: white;
+    width: 200px;
+    height: 25px;
 }
