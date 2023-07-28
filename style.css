@@ -49,6 +49,9 @@ body, html {
 
 .slider-value {
     color: white;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
 }
 
 input[type="color"] {
@@ -71,3 +74,26 @@ h1, p {
     width: 200px;
     height: 25px;
 }
+
+
+  input[type='range'] {
+    -webkit-appearance: none;
+    background-color: #1E1014;
+    border-radius: 25px;
+  }
+  
+  input[type='range']::-webkit-slider-runnable-track {
+    height: 10px;
+    border: 1px solid white;
+    border-radius: 25px;
+
+  }
+  
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 25px;
+    margin-top: -8px;
+    background: white;
+  }

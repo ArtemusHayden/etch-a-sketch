@@ -5,7 +5,7 @@ const userInput = document.querySelector('.slider');
 const slideDisplay = document.querySelector('.slider-value');
 userInput.oninput = (() => {
     let value = userInput.value
-    slideDisplay.textContent = value 
+    slideDisplay.textContent = value + "x" + value
     let colorSelector = document.querySelector('.color-selector');
     createGrid(value, colorSelector)
 });
