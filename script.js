@@ -1,8 +1,7 @@
 const defaultColor = '#1E1014'
-const sketchCont = document.getElementsByClassName("sketch-cont");
-
 const userInput = document.querySelector('.slider');
 const slideDisplay = document.querySelector('.slider-value');
+
 userInput.oninput = (() => {
     let value = userInput.value
     slideDisplay.textContent = value + "x" + value
@@ -10,7 +9,29 @@ userInput.oninput = (() => {
     createGrid(value, colorSelector)
 });
 
+const clear = document.querySelector('.clear');
+const eraser = document.querySelector('.eraser');
+
 function createGrid (userGrid, colorSelector){
+    let isMousedown = false;
+    let eraserMode = false;
+    colorSelector.addEventListener ('click', () =>{
+        eraserMode = false;
+    });
+
+    eraser.addEventListener('click', () =>{
+        eraserMode = true;
+    });
+
+    clear.addEventListener('mousedown', () => {
+        allGrids = document.querySelectorAll('.grid');
+        allGrids.forEach(grid => {
+            grid.style.backgroundColor = defaultColor;
+        })
+    });
+
+// seperate loop to increase load times ^
+
     const sketchCont = document.querySelector(".sketch-cont");
     let gridAmount = (userGrid * userGrid);
     sketchCont.innerHTML = '';
@@ -29,13 +50,13 @@ function createGrid (userGrid, colorSelector){
                 grid.style.backgroundColor = colorSelector.value;
             }
         });
-    
+        
         grid.addEventListener("mouseup", () => {
             isMousedown = false;
         });
-    
+        
         grid.addEventListener("mousemove", () => {
-            if (isMousedown) {
+            if (isMousedown === true) {
                 if (eraserMode === true) {
                     grid.style.backgroundColor = defaultColor;
                 } else{
@@ -45,23 +66,7 @@ function createGrid (userGrid, colorSelector){
                 return;
         }
         });
-
-        const clear = document.querySelector('.clear');
-        const eraser = document.querySelector('.eraser');
-        let eraserMode = false;
-
-        colorSelector.addEventListener ('click', () =>{
-            eraserMode = false;
-        });
-    
-        eraser.addEventListener('click', () =>{
-            eraserMode = true;
-        });
-
-        clear.addEventListener('click', () =>{
-            grid.style.backgroundColor = defaultColor;
-        });
     }
-
 }
+
 // ^ creates grid and adds conditions based on which buttons are pressed
